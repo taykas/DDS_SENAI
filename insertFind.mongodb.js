@@ -1,4 +1,4 @@
-// use('db_senai')
+use('db_senai')
 
 // db.people.insertMany([
 //     {
@@ -53,4 +53,6 @@
 //     },
 // ])
 
-db.people.find
+//db.people.find({name: 'Thayna'})
+
+db.people.find({name: /C/})
