@@ -89,11 +89,12 @@ use('db_senai')
 
 // db.people.find({name: 'Alterado'})
 
-db.people.updateMany(
-    {salary: 124},
-    {$set: {salary: 1234}}
-)
+// db.people.updateMany(
+//     {salary: 124},
+//     {$set: {salary: 1234}}
+// )
 
+db.people.deleteMany({name: /e/})
 
 
 
