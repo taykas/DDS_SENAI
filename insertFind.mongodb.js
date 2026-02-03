@@ -87,7 +87,13 @@ use('db_senai')
 //     {$set: {name: 'Alterado'}}
 // )
 
-db.people.find({name: 'Alterado'})
+// db.people.find({name: 'Alterado'})
+
+db.people.updateMany(
+    {salary: 124},
+    {$set: {salary: 1234}}
+)
+
 
 
 
