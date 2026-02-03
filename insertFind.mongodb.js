@@ -1,5 +1,5 @@
-use('db_senai')
 
+// // // INSERTS
 // db.people.insertMany([
 //     {
 //         name: 'Thayna',
@@ -53,6 +53,16 @@ use('db_senai')
 //     },
 // ])
 
+
+// // //FIND
 //db.people.find({name: 'Thayna'})
 
-db.people.find({name: /C/})
+
+// // // FIND COM CONTAINS
+// db.people.find({name: /C/})
+
+// // // FIND COM CONTAINS COMECO E FIM
+// db.people.find({name: /^J.*a$/})
+
+use('db_senai')
+//
