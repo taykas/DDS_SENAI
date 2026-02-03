@@ -77,12 +77,17 @@
 //     }
 // )
         
-// db.people.find({salary: { $gt: 123}})
+
+
+// db.people.find({ salary: { $gte: 123} }, { name: 1, lastname: 1 })
 
 use('db_senai')
+// db.people.updateOne(
+//     {_id: ObjectId('6981f3d9780e414d55c958c2')},
+//     {$set: {name: 'Alterado'}}
+// )
 
-db.people.find({ salary: { $gte: 123} }, { name: 1, lastname: 1 })
-
+db.people.find({name: 'Alterado'})
 
 
 
