@@ -65,18 +65,17 @@
 // db.people.find({name: /^J.*a$/})
 
 
-// db.people.insertMany([
-//     {
-//         name: 'Jane',
-//         lastname: 'Doe',
-//         salary: 2
-//     },
-//     {
-//         name: 'Jane',
-//         lastname: 'Hopper',
-//         salary: 2
-//     },
-// ])
+
+// db.people.find({ $and: [{ name: 'Jane'}, {lastname: 'Doe'}]})
 
 use('db_senai')
-db.people.find({ $and: [{ name: 'Jane'}, {lastname: 'Doe'}]})
+
+// db.people.insertOne(
+//     {
+//         name: 'Fulano',
+//         lastname: 'Tal e Tal',
+//         salary: 124
+//     }
+// )
+
+db.people.find({salary: { $gt: 123}})
