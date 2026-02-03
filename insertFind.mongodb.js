@@ -64,18 +64,19 @@
 // // // FIND COM CONTAINS COMECO E FIM
 // db.people.find({name: /^J.*a$/})
 
-use('db_senai')
 
-db.people.insertMany([
-    {
-        name: 'Jane',
-        lastname: 'Doe',
-        salary: 2
-    },
-    {
-        name: 'Jane',
-        lastname: 'Hopper',
-        salary: 2
-    },
-])
-// db.people.find({ $and: [{ name: }]})
+// db.people.insertMany([
+//     {
+//         name: 'Jane',
+//         lastname: 'Doe',
+//         salary: 2
+//     },
+//     {
+//         name: 'Jane',
+//         lastname: 'Hopper',
+//         salary: 2
+//     },
+// ])
+
+use('db_senai')
+db.people.find({ $and: [{ name: 'Jane'}, {lastname: 'Doe'}]})
