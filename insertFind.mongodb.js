@@ -55,7 +55,7 @@
 
 
 // // //FIND
-//db.people.find({name: 'Thayna'})
+// db.people.find({name: 'Thayna'})
 
 
 // // // FIND COM CONTAINS
@@ -68,7 +68,6 @@
 
 // db.people.find({ $and: [{ name: 'Jane'}, {lastname: 'Doe'}]})
 
-use('db_senai')
 
 // db.people.insertOne(
 //     {
@@ -77,5 +76,14 @@ use('db_senai')
 //         salary: 124
 //     }
 // )
+        
+// db.people.find({salary: { $gt: 123}})
 
-db.people.find({salary: { $gt: 123}})
+use('db_senai')
+
+db.people.find({ salary: { $gte: 123} }, { name: 1, lastname: 1 })
+
+
+
+
+
