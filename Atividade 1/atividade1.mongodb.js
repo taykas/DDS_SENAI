@@ -46,4 +46,8 @@ const pessoas =
 
 // db.contatos.find({telefone: /^9/})
 
-db.contatos.find({email: /gmail.com/})
+// db.contatos.find({email: /gmail.com/})
+
+// db.contatos.find({cidade: { $eq: "São Paulo"}})
+
+db.contatos.find({dataCadastro: { $gte: new Date('2023-01-01')}})
