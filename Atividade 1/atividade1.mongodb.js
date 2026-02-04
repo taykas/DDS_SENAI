@@ -67,3 +67,9 @@ const pessoas =
 //     {$set: {cidade: 'Curitiba'}}
 // )
 
+// db.contatos.updateMany(
+//     {telefone: /^41/},
+//     {$set: {cidade: "Curitiba"}}
+// )
+
+// // // DELET
