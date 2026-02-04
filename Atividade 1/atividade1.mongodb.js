@@ -62,3 +62,8 @@ const pessoas =
 //     {$set: {telefone: '41940028922'}}
 // )
 
+// db.contato.updateOne(
+//     {noma: 'Amanda Souza'},
+//     {$set: {cidade: 'Curitiba'}}
+// )
+
