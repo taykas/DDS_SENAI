@@ -40,6 +40,8 @@ const pessoas =
     }
     ]
 
+// // // Regex
+
 //db.contatos.insertMany(pessoas)
 
 // db.contatos.find({nome: /^A/i})
@@ -50,4 +52,13 @@ const pessoas =
 
 // db.contatos.find({cidade: { $eq: "São Paulo"}})
 
-db.contatos.find({dataCadastro: { $gte: new Date('2023-01-01')}})
+// db.contatos.find({dataCadastro: { $gte: new Date('2023-01-01')}})
+
+// // // Updates
+
+// db.contato.updateOne(
+//     {_id: ObjectId('69832dae0fc547752f3b7e3b')},
+//     {$set: {email: 'brucosta@gmail.com'}},
+//     {$set: {telefone: '41940028922'}}
+// )
+
