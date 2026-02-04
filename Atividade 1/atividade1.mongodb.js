@@ -45,3 +45,5 @@ const pessoas =
 // db.contatos.find({nome: /^A/i})
 
 // db.contatos.find({telefone: /^9/})
+
+db.contatos.find({email: /gmail.com/})
