@@ -95,7 +95,3 @@ use('db_senai')
 // )
 
 db.people.deleteMany({name: /e/})
-
-
-
-

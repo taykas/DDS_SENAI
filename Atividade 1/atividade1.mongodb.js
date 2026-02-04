@@ -72,4 +72,12 @@ const pessoas =
 //     {$set: {cidade: "Curitiba"}}
 // )
 
-// // // DELET
+// // // DELETE
+
+// db.contatos.deleteOne(
+//     {email: "ana.silva@gmail.com"}
+// )
+
+// db.contatos.deleteMany(
+//     {cidade: "Curitiba"}
+// )
