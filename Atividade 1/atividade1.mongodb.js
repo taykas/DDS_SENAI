@@ -56,14 +56,14 @@ const pessoas =
 
 // // // Updates
 
-// db.contato.updateOne(
+// db.contatos.updateOne(
 //     {_id: ObjectId('69832dae0fc547752f3b7e3b')},
 //     {$set: {email: 'brucosta@gmail.com'}},
 //     {$set: {telefone: '41940028922'}}
 // )
 
-// db.contato.updateOne(
-//     {noma: 'Amanda Souza'},
+// db.contatos.updateOne(
+//     {nome: 'Amanda Souza'},
 //     {$set: {cidade: 'Curitiba'}}
 // )
 
