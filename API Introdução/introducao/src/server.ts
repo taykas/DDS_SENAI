@@ -3,8 +3,7 @@ import routes from './routes/routes.ts';
 
 const port = 8080
 const app = express();
-
-app.use(routes)
+routes(app)
 
 app.get('/', (req, res) => {
     res.status(200).send({response: 'api funcionando'})
