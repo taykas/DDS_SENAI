@@ -9,6 +9,19 @@ const pessoa = {
     lastname: 'Kaizi'
 }
 
+const pessoas = [
+    {
+        nome: 'teste'
+    },
+    {
+        nome: 'fulano'
+    }
+] 
+
+app.get('/pessoas', (req, res) => {
+    res.send({pessoas: pessoas})
+})
+
 app.get('/objeto', (req, res) => {
     res.send({pessoa: pessoa})
 })
