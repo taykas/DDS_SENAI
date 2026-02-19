@@ -1,4 +1,4 @@
-import express, { Request, response, Response, Router } from 'express';
+import express, { Request, Response, Router } from 'express';
 
 const router: Router = express.Router();
 const people: object[] = [];
@@ -13,9 +13,9 @@ router
         res.status(200).send({ users: people})
     })
     .get('/usuarios/:id', (req: Request, res: Response) => {
-        const {id} = req.params
+        const {id} = req.query
         let convertedId = Number(id)
-        res.status(200).send({response: people[convertedId]})
+        res.status(200).send({response: `${}`})
     })
     .get('/filtro', (req: Request, res: Response) => {
         const {name, lastname} = req.query
@@ -26,6 +26,5 @@ router
         const {name, lastname} = req.body
         res.status(200).send({response: `Atualizando o usuario ${id} -> ${name} ${lastname}`})
     })
-    .delete("/deletar/:id")
 
 export default router;
