@@ -1,5 +1,6 @@
-import express, { response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import routes from './routes/routes.ts';
+import router from './routes/person.ts';
 
 const port = 8080
 const app = express();
