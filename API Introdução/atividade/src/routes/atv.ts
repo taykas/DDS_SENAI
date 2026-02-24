@@ -44,6 +44,7 @@ const validarCampos = (req: Request, res: Response, next: Function) => {
 router
     .post('/registrar', validarCampos, (req: Request, res: Response) => {
         const { id, nome, email, tipo } = req.body;
+        
         const dataRegistro = new Date().toISOString();
 
         atv.push({ id, nome, email, tipo, dataRegistro });
@@ -78,6 +79,21 @@ router
 
         res.status(200).send({ usuario });
     })
-    .put()
+    .put('/editar/:id', validarCampos, (req: Request, res: Response) => {
+        const {id} = req.params;
+        const {nome, email, tipo} = req.body;
+
+        const usuarioEditar = atv.find(u => u.id === id);
+
+        if(!usuarioEditar) {
+            return res.status(404).send({message: `Usuario não encontrado`})
+        }
+
+        if (nome) usuarioEditar.nome = nome;
+        if (email) usuarioEditar.email = email;
+        if (tipo) usuarioEditar.tipo = tipo;
+
+        res.status(200).send({ message: `Usuario Editado com sucesso ${usuarioEditar}` });
+    })
 
 export default router;
