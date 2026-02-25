@@ -6,6 +6,7 @@ interface Usuario {
     email: string;
     tipo: string;
     dataRegistro: string;
+    ativo: boolean;
 }
 
 const router: Router = express.Router();
@@ -40,15 +41,41 @@ const validarCampos = (req: Request, res: Response, next: Function) => {
     next();
 };
 
+const validarPatch = (req: Request, res: Response, next: Function) => {
+    const { id, email, tipo } = req.body; 
+
+    // Verifica se o email já existe (ignora maiúsculas/minúsculas)
+    if(email) {
+        const emailExistente = atv.find(u => u.email.toLowerCase() === email.toLowerCase());
+        if (emailExistente) {
+            return res.status(400).send({ message: 'Usuário já cadastrado! Email repetido' });
+        }
+    }   
+
+    if(tipo) {
+        const tiposValidos = ["aluno", "professor", "coordenador"];
+        if (!tiposValidos.includes(tipo)) {
+            return res.status(400).send({ message: `Tipo ${tipo} não válido!` });
+        }
+    }
+
+    if(id) {
+        return res.status(400).send({message: 'Mudança de ID não autorizada'});
+    }
+
+    next();
+};
+
 
 router
     .post('/registrar', validarCampos, (req: Request, res: Response) => {
         const { id, nome, email, tipo } = req.body;
         
         const dataRegistro = new Date().toISOString();
+        const ativo = true;
 
-        atv.push({ id, nome, email, tipo, dataRegistro });
-        res.status(200).send({ message: `Usuário ${id} ${nome} ${email} cadastrado com sucesso`, dataRegistro });
+        atv.push({ id, nome, email, tipo, dataRegistro, ativo });
+        res.status(200).send({ message: `Usuário ${id} ${nome} ${email} cadastrado com sucesso`, dataRegistro, ativo });
     })
    .get('/usuarios', (req: Request, res:Response) => {
         res.status(200).send({ usuario: atv })
@@ -65,9 +92,9 @@ router
     })
     .get('/usuarios/tipo/:tipo', (req: Request, res:Response) => {
         const { tipo } = req.params;
-        const usuarioTipo = atv.find(u => u.tipo === tipo);
+        const usuarioTipo = atv.filter(u => u.tipo === tipo);
         
-        res.status(200).send({ usuarios: usuarioTipo })
+        res.status(200).send({ usuarioTipo })
     })
     .get('/usuarios/nome/:nome', (req: Request, res: Response) => {
         const { nome } = req.params;
@@ -81,19 +108,48 @@ router
     })
     .put('/editar/:id', validarCampos, (req: Request, res: Response) => {
         const {id} = req.params;
-        const {nome, email, tipo} = req.body;
+        const { idBody, nome, email, tipo} = req.body;
 
         const usuarioEditar = atv.find(u => u.id === id);
 
         if(!usuarioEditar) {
             return res.status(404).send({message: `Usuario não encontrado`})
         }
-
+        
         if (nome) usuarioEditar.nome = nome;
         if (email) usuarioEditar.email = email;
         if (tipo) usuarioEditar.tipo = tipo;
 
+        res.status(200).send({ message: `Usuario Editado com sucesso` });
+    })
+    .patch('/editarPatch/:id', validarPatch, (req: Request, res: Response) => {
+        const {id} = req.params;
+        const dados = req.body;
+
+        const usuarioEditar = atv.find(u => u.id === id);
+
+        if(!usuarioEditar){
+            return res.status(404).send({message: 'Usuario não encontrado'})
+        }
+
+        if(dados.nome) usuarioEditar.nome = dados.nome;
+        if(dados.email) usuarioEditar.email = dados.email;
+        if(dados.tipo) usuarioEditar.tipo = dados.tipo;
+
         res.status(200).send({ message: `Usuario Editado com sucesso ${usuarioEditar}` });
+    })
+    .delete('deletar/:id', (req: Request, res: Response) => {
+        const {id} = req.params;
+        // const convertedId = Number(id)
+        const usuarioExcluir = atv.findIndex(u => u.id === id);
+
+        if(!usuarioExcluir){
+            return res.status(404).send({message: 'Usuario não encontrado'})
+        }
+
+        atv.splice(usuarioExcluir, 1)
+
+        res.status(200).send({ message: `Usuario Deletado com sucesso` });
     })
 
 export default router;
