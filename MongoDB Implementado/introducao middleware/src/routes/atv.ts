@@ -1,24 +1,9 @@
-import express, { Request, Response, Router } from 'express';
-import Person from '../models/person.ts'
+import express from 'express';
+import AuthController from '../controller/AuthController.ts';
+import { authMiddleware } from '../middleware/middleware.ts';
 
-const router: Router = express.Router();
+const route = express.Router();
 
-router
-    .post('/registrar', async (req: Request, res: Response) => {
-        const { name, lastname, age } = req.body;
-        const person = new Person({name, lastname, age});
+route.post('/register', authMiddleware, AuthController.createUser);
 
-        await person.save()
-        
-        res.status(200).send({ message: 'Registrado com Sucesso'});
-    })
-    .get('/people', async (req: Request, res: Response) => {
-        try {
-            const people = await Person.find();
-            res.status(200).json(people);
-        } catch (error) {
-            res.status(400).json({ message: 'Erro ao buscar pessoas', error });
-        }
-    });
-    
-export default router;
+export default route;
