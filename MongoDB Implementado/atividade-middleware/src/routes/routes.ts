@@ -4,6 +4,6 @@ import product from './productRoutes.js'
 
 export default function (app: Express) {
     app
-    .use(express.json())
-    .use('/api/atvMiddleware', product)
+        .use(express.json()) // Valida se o objeto está nos padrões
+        .use('/api', product)
 }
