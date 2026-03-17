@@ -1,5 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/tsconfig",
+  "display": "Node 22",
   "_version": "22.0.0",
 
   "compilerOptions": {
@@ -10,6 +11,8 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }

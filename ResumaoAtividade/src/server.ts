@@ -1,6 +1,6 @@
 import express from 'express';
-import initRoutes from './routes/routes.js'
-import connectDB from '../database/database.js'
+import initRoutes from './routes/routes.ts';
+import connectDB from '../database/database.ts';
 
 const app = express();
 

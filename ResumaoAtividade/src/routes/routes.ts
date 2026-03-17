@@ -1,9 +1,9 @@
 import { Express } from 'express';
 import express from 'express'
-import person from './person.js'
+import product from './product.ts'
 
 export default function (app: Express) {
     app
     .use(express.json())
-    .use('/api/person', person)
+    .use('/api/product', product)
 }
