@@ -1,6 +1,35 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+      try {
+          const response = await axios.post('http://localhost:8080/api/auth/login', {name, email, password})
+          sessionStorage.setItem('token', response.data.token)
+
+          Swal.fire({
+              title: 'Registrado',
+              text: 'Usuário cadastrado com sucesso!',
+              icon: 'success'
+          })
+
+
+          return navigate('/home')
+      } catch {
+          return Swal.fire({
+              title: "Erro!",
+              text: "Não foi possível regitrar!",
+              icon: "error"
+      })
+      }
+  }
+  
     return (
       <div className="bg-amber-800 h-screen w-screen flex flex-col items-center justify-center">
         
@@ -16,16 +45,20 @@ export const Login = () => {
             <section className="flex flex-col items-center justify-center gap-7">
               
               <input
-                type="text"
+                value={email}
+                type="email"
                 placeholder="Email"
                 className="p-[2%] w-[20vw] border-2 border-amber-700 rounded-2xl focus:border-amber-900 outline-none"
+                onChange={(e)=> setEmail(e.target.value)}
               />
   
               <section className="flex flex-col">
                 <input
+                  value={password}
                   type="password"
                   placeholder="Senha"
                   className="p-[2%] w-[20vw] border-2 border-amber-700 rounded-2xl focus:border-amber-900 outline-none"
+                  onChange={(e)=> setPassword(e.target.value)}
                 />
   
                 <a href="#" className="self-end hover:text-amber-700">
@@ -39,7 +72,9 @@ export const Login = () => {
               Entrar
             </button>
   
-            <Link to="/cadastro" className="text-amber-800 hover:text-amber-700">
+            <Link to="/cadastro"
+              onClick={handleLogin}
+              className="text-amber-800 hover:text-amber-700">
                 Criar uma Conta
             </Link>
   

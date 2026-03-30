@@ -9,8 +9,8 @@ dotenv.config();
 class AuthController {
     static async register(req: Request, res: Response): Promise<any> {
         const { name, email, password } = req.body;
+        console.log(name, email, password, process.env.SECRET)
         const passwordCrypt = CryptoJS.AES.encrypt(password, process.env.SECRET as string).toString();
-        
         const user = new User({
             name,
             email,
