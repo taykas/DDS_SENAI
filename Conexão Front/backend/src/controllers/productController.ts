@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
-import Product from "../models/userModel.ts";
+import Product from "../models/productModel.ts";
 
 class UserController {
     static async createProduct(req: Request, res: Response) {
     const { productId, name, description, price, stock, category } = req.body;
+    console.log(name,description,price, stock, category)
+    parseFloat(price)
+    parseInt(stock)
         try {
-            await Product.create({ productId,name, description, price, stock, category })
+            await Product.create({ name, description, price, stock, category })
             res.status(201).send({ message: `Produto ${productId} ${name} ${description}, ${price}, ${stock}, ${category} criado com sucesso!` });   
         } catch(error) {
+            console.error(error)
             return res.status(500).json({ message: "Server error", error });
         }
     }

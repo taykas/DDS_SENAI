@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/productMiddleware.ts";
 
 const router = express.Router();
 
-router.post("/createproduct", authMiddleware, UserController.createProduct);
+router.post("/createproduct", UserController.createProduct);
 router.get("/listproducts", UserController.getProducts);
 router.get("/filterproduct/category/:category", UserController.getCategory); 
 router.get("/filterproduct/Minprice/:price", UserController.getMinPrice);
