@@ -17,9 +17,9 @@ export const CadastroProduto= () => {
             await axios.post("http://localhost:8080/api/products/createproduct", {
                 name,
                 description,
-                category,
-                stock,
-                price
+                price: Number(price),
+                stock: Number(stock),
+                category, 
             })
             navigate("/")
         } catch (error) {
@@ -59,8 +59,8 @@ export const CadastroProduto= () => {
 
                         <div className="flex w-[100%] justify-between gap-4">
                             <input
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
                             type="number"
                             placeholder="Preço"
                             className="p-[2%] w-[9vw] border-2 border-amber-700 rounded-2xl focus:border-amber-900 outline-none"
@@ -77,8 +77,8 @@ export const CadastroProduto= () => {
                         
                         
                         <input
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         type="text"
                         placeholder="Descrição"
                         className="p-[2%] w-[20vw] h-[10vh] border-2 border-amber-700 rounded-2xl focus:border-amber-900 outline-none"

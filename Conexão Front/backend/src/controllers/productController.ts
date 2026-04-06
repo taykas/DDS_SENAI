@@ -3,13 +3,20 @@ import Product from "../models/productModel.ts";
 
 class UserController {
     static async createProduct(req: Request, res: Response) {
-    const { productId, name, description, price, stock, category } = req.body;
+    const { name, description, price, stock, category } = req.body;
     console.log(name,description,price, stock, category)
-    parseFloat(price)
+    const parsedPrice = parseFloat(price)
+    const parsedStock = parseInt(stock)
     parseInt(stock)
         try {
-            await Product.create({ name, description, price, stock, category })
-            res.status(201).send({ message: `Produto ${productId} ${name} ${description}, ${price}, ${stock}, ${category} criado com sucesso!` });   
+            await Product.create({ 
+                name, 
+                description,
+                price: parsedPrice, 
+                stock: parsedStock, 
+                category 
+            })
+            res.status(201).send({ message: `Produto ${name} ${description}, ${price}, ${stock}, ${category} criado com sucesso!` });   
         } catch(error) {
             console.error(error)
             return res.status(500).json({ message: "Server error", error });
