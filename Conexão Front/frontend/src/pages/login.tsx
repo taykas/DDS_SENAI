@@ -8,27 +8,32 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-      try {
-          const response = await axios.post('http://localhost:8080/api/auth/login', {name, email, password})
-          sessionStorage.setItem('token', response.data.token)
+  const login = async () => {
 
-          Swal.fire({
-              title: 'Registrado',
-              text: 'Usuário cadastrado com sucesso!',
-              icon: 'success'
-          })
+    try {
+        const response = await axios.post("http://localhost:8080/api/auth/login", {
+            email,
+            password
+        })
 
-
-          return navigate('/home')
-      } catch {
-          return Swal.fire({
-              title: "Erro!",
-              text: "Não foi possível regitrar!",
-              icon: "error"
-      })
-      }
-  }
+        sessionStorage.setItem('token', response.data.token)
+        
+        console.log(response.data)
+        navigate("/home")
+        return Swal.fire({
+          title: "Sucess!",
+          text: "Login efetuado com sucesso",
+          icon: "success"
+        })
+    
+    } catch (error: any) {
+        return Swal.fire({
+            title: "Error",
+            text: "Email ou Senha invalidos",
+            icon: "error"
+        })
+    }
+}
   
     return (
       <div className="bg-amber-800 h-screen w-screen flex flex-col items-center justify-center">
@@ -67,13 +72,13 @@ export const Login = () => {
               </section>
   
             </section>
-  
-            <button className="bg-amber-800 text-white p-[2%] w-[10vw] h-[4vh] rounded-2xl hover:bg-amber-700">
+
+            <button onClick={() => login()}  className="bg-amber-800 text-white p-[2%] w-[10vw] h-[4vh] rounded-2xl hover:bg-amber-700">
               Entrar
             </button>
   
             <Link to="/cadastro"
-              onClick={handleLogin}
+              onClick={() => navigate("/home")} 
               className="text-amber-800 hover:text-amber-700">
                 Criar uma Conta
             </Link>

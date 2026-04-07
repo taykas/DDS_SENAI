@@ -29,28 +29,40 @@ export const Products = () => {
   }, []);
 
   return (
-    <div className="w-screen min-h-screen bg-amber-700 p-4 flex items-start justify-center">
-      {products.length === 0 ? (
-        <div className="text-center py-10 text-gray-400">
-          Nenhum produto encontrado
-        </div>
-      ) : (
-        <div className=" w-[50vw] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-blue-600 rounded-lg overflow-hidden"
-            >
-              <div className="bg-amber-50 p-4 flex flex-col justify-between h-full">
-                <h1 className="font-bold text-lg mb-2">{product.name}</h1>
-                <p className="text-sm mb-1">Categoria: {product.category}</p>
-                <p className="text-sm mb-1">Preço: R${product.price}</p>
-                <p className="text-sm">Estoque: {product.stock}</p>
+    <div>
+      <div className="h-[10vh] w-screen bg-amber-100">
+        <h1>IProducts</h1>
+      </div>
+
+      <div className="w-screen min-h-screen bg-amber-700 p-4 flex items-start justify-center">
+        {products.length === 0 ? (
+          <div className="text-center py-10 text-gray-400">
+            Nenhum produto encontrado
+          </div>
+        ) : (
+          <div className=" w-[50vw] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 ">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="bg-blue-600 rounded-lg overflow-hidden"
+              >
+                <div className="bg-amber-50 p-4 flex flex-col justify-between h-full ">
+                  <h1 className="font-bold text-lg mb-2">{product.name}</h1>
+                  <p className="text-sm mb-1">Categoria: {product.category}</p>
+                  <p className="text-sm mb-1">Preço: R${product.price}</p>
+                  <p className="text-sm mb-[3%]">Estoque: {product.stock}</p>
+                  <div className="flex flex-row items-center justify-between">
+                    <button className="p-1 bg-amber-400 rounded-md w-[7vw] hover:bg-amber-300">Editar</button>
+                    <button className="p-1 bg-amber-400 rounded-md w-[7vw] hover:bg-amber-300">Excluir</button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
+        <div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

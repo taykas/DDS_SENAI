@@ -17,7 +17,7 @@ export const Cadastro= () => {
                 text: 'Usuário cadastrado com sucesso!',
                 icon: 'success'
             })
-            return navigate('/login')
+            return navigate('/')
         } catch {
             return Swal.fire({
                 title: "Erro!",
@@ -71,7 +71,7 @@ export const Cadastro= () => {
                         <button onClick={handleRegister} className="bg-amber-800 text-white p-[2%] w-[10vw] h-[4vh] rounded-2xl hover:bg-amber-700">
                             Criar Conta
                         </button>
-                        <Link to="/login">Entrar</Link>
+                        <Link to="/">Entrar</Link>
                     </section>
 
                 </div>
